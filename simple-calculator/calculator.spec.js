@@ -140,19 +140,19 @@ describe('calculator.js', function(){
             /**done 是一開始為了確保程式等fetch拿到後 才結束，不然會有時候正確有時候沒有拿到資料
              * 但是有了spyOn後  就不需要了
              */
-            it('fetches version from external source', /*async*/ function(done){
+            it('fetches version from external source', async function(done){
                 //spyOn 這是第二部後才加的
-                /*spyOn(window, 'fetch').and.returnValue(Promise.resolve( 
+                spyOn(window, 'fetch').and.returnValue(Promise.resolve( 
                     new Response('{"version":"0.1"}')
-                ));*/
+                ));
                 
-                calculator.version.then(function(version){
+                /*calculator.version.then(function(version){
                     expect(version).toBe('0.1');
-                    done();
-                });
-                /*var version = await calculator.version;
+                    //done();
+                });*/
+                var version = await calculator.version;
                 expect(version).toBe('0.1');
-                done();*/
+                done();
             });
         });
     

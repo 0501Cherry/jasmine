@@ -93,7 +93,7 @@ describe('main.js', function(){
             expect(/**搭配第二種宣告方式 */this.element.innerText).toBe('5');
         });
     });
-    xdescribe('showVersion()', function(){
+    describe('showVersion()', function(){
         it('calls calculator.version', function(){
             spyOn(document, 'getElementById').and.returnValue({
                 innerText: null
@@ -105,8 +105,10 @@ describe('main.js', function(){
             // expect(/**spy */ Calculator.prototype.version).toHaveBeenCalled();
 
             /**.and後面&Promise.resolve() 這些是後來才加的 */
-            var spy = spyOnProperty(Calculator.prototype, 'version','get')/*.and.returnValue()
-            Promise.resolve()*/
+            var spy = spyOnProperty(Calculator.prototype, 'version','get').and.returnValue(
+                Promise.resolve()
+            );
+            
 
             showVersion();
             expect(/**Object.getOwnPropertyDescriptor(Calculator.prototype, 'version').get*/spy).toHaveBeenCalled();
